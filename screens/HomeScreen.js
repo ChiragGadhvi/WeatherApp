@@ -6,18 +6,27 @@ import { theme } from '../theme'
 import {debounce} from 'lodash';
 import { CalendarDaysIcon, HandRaisedIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
 import { MapPinIcon } from 'react-native-heroicons/solid'
-import { fetchLocations } from '../api/weather'
+import { fetchLocations, fetchWeatherForecast } from '../api/weather'
 export default function HomeScreen() {
     const [showSearch, toggleSearch] = useState(false);
     const [locations, setLocations] = useState([1, 2, 3]);
     const handleLocation = (loc) => {
         console.log('location: ', loc);
+        setLocations([]);
+        fetchWeatherForecast({
+            cityName: loc.name,
+            days: '7'
+        }).then(data=>{
+            console.log('got forecast: ',data);
+        })
     }
     const handleSearch = value=>{
         // fetch locations
-        fetchLocations({cityName: value}).then(data=>{
-            console.log('got data: ',data);
-        })
+        if(value.length>2){
+            fetchLocations({cityName: value}).then(data=>{
+                setLocations(data);
+            })
+        }
     }
     const handleTextDebounce = useCallback(debounce(handleSearch,1200),[])
 
