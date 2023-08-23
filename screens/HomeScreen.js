@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView} from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MagnifyingGlassIcon, XMarkIcon } from 'react-native-heroicons/outline'
@@ -67,7 +67,7 @@ export default function HomeScreen() {
         <View className="flex-1 relative">
             <StatusBar style="light" />
             <Text>hello</Text>
-            <Image blurRadius={70} className="absolute h-full w-full" source={require('../assets/images/bg.png')} />
+            <Image blurRadius={50} className="absolute h-full w-full" source={require('../assets/images/bg4.jpeg')} />
             {
                 loading ? (
                     <View className="flex-1 flex-row justify-center items-center">
